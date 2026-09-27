@@ -1,0 +1,10 @@
+[Unit]
+Description=Start RM100 Spotify display after boot
+
+[Timer]
+OnBootSec=20s
+Unit=rm100-spotify.service
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target

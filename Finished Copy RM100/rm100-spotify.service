@@ -1,0 +1,22 @@
+[Unit]
+Description=RM100 Spotify display
+After=home.mount network.target
+Wants=network.target
+Conflicts=xochitl.service
+
+[Service]
+Type=simple
+User=root
+Environment=HOME=/home/root
+WorkingDirectory=/home/root
+ExecStart=/bin/systemd-inhibit --what=idle:sleep --who=RM100-Spotify --why=Active --mode=block /home/root/rm100_spotify
+ExecStopPost=/bin/systemctl start xochitl
+Restart=no
+KillSignal=SIGINT
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target
+
+
+
